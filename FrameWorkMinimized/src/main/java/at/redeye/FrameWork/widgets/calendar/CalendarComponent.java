@@ -5,6 +5,7 @@
  */
 
 package at.redeye.FrameWork.widgets.calendar;
+import java.awt.Font;
 
 import at.redeye.FrameWork.utilities.calendar.Holidays;
 import at.redeye.FrameWork.utilities.calendar.Holidays.HolidayInfo;
@@ -365,16 +366,16 @@ public class CalendarComponent extends javax.swing.JPanel implements DisplayMont
         System.out.println("offset:" + offset);
 
         /* das aktuelle Monat durchnummerieren */
-        for( int i = offset, count=1; count <= maxDays && i < 42; i++, count++ )
+        for( int i = offset, count=1, count = 1; count <= maxDays && i < 42; i++, count++ )
         {
             days.get(i).setDay(Integer.toString(count));
             days.get(i).setActive();
             InfoRenderer renderer = days.get(i).getInfoRenderer();
 
             if( renderer != null )
-                renderer.setDay(cal.plusDays(count-1));
+                renderer.setDay(cal.plusDays(count- 1L));
 
-            days.get(i).setWeekDay(cal.plusDays(count-1).getDayOfWeek().getValue());
+            days.get(i).setWeekDay(cal.plusDays(count- 1L).getDayOfWeek().getValue());
         }
 
         // Samstage hervorheben
@@ -387,7 +388,7 @@ public class CalendarComponent extends javax.swing.JPanel implements DisplayMont
         }
 
         /* das nächste Monat durchnummerieren */
-        for( int i = maxDays+(offset), count=1; i < 42; i++, count++ )
+        for( int i = maxDays+(offset), count=1, count = 1; i < 42; i++, count++ )
         {
             days.get(i).setDay(Integer.toString(count));
             days.get(i).setInactive();
@@ -395,7 +396,7 @@ public class CalendarComponent extends javax.swing.JPanel implements DisplayMont
             InfoRenderer renderer = days.get(i).getInfoRenderer();
 
             if( renderer != null )
-                renderer.setDay(cal.plusDays(maxDays + count - 1));
+                renderer.setDay(cal.plusDays(maxDays + count - 1L ));
         }
 
         LocalDate cal2 = LocalDate.of(Year,Month,1);
@@ -406,7 +407,7 @@ public class CalendarComponent extends javax.swing.JPanel implements DisplayMont
         System.out.println( "maxDaysBefore:" + maxDaysbefore );
 
         /* das vorhergehende Monat durchnummerieren */
-        for( int i = 0, count=maxDaysbefore-offset+1; i < offset; i++, count++ )
+        for( int i = 0, count=maxDaysbefore-offset+1, count = maxDaysbefore - offset + 1; i < offset; i++, count++ )
         {
             days.get(i).setDay(Integer.toString(count));
             days.get(i).setInactive();
@@ -414,7 +415,7 @@ public class CalendarComponent extends javax.swing.JPanel implements DisplayMont
             InfoRenderer renderer = days.get(i).getInfoRenderer();
 
             if( renderer != null )
-                renderer.setDay(cal3.plusDays(count - 1));
+                renderer.setDay(cal3.plusDays(count - 1L ));
         }
 
         jLTitle.setText( MonthNames.getFullMonthName(month)+ " " + cal.getYear());
